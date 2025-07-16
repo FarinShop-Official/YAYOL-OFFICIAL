@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>Yayol Official</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(160deg, #000000, #1a001f);
+      color: #eee;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    .menu-wrapper {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 999;
+}
+
+.menu-dot {
+  font-size: 22px;
+  color: #fff;
+  cursor: pointer;
+  padding: 6px 12px;
+  background-color: #1e1e2f;
+  border-radius: 8px;
+  border: 1px solid rgba(138, 43, 226, 0.4);
+  box-shadow: 0 0 12px rgba(138, 43, 226, 0.5);
+  transition: all 0.3s ease;
+}
+
+.menu-dot:hover {
+  background-color: #2b2040;
+}
+
+.menu-dropdown {
+  display: none;
+  position: absolute;
+  top: 38px;
+  right: 0;
+  background-color: #1e1e2f;
+  border: 1px solid rgba(138, 43, 226, 0.5);
+  box-shadow: 0 0 15px rgba(138, 43, 226, 0.4);
+  border-radius: 10px;
+  overflow: hidden;
+  min-width: 120px;
+}
+
+.menu-dropdown a {
+  display: block;
+  color: #eee;
+  padding: 10px 16px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
+.menu-dropdown a:hover {
+  background-color: #2b2040;
+}
+
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .container {
+      flex: 1;
+      padding: 24px 20px;
+    }
+
+    .profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .profile img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 2px solid #8a2be2;
+  box-shadow: 0 0 15px 4px rgba(138, 43, 226, 0.6); /* ungu glowing */
+  transition: box-shadow 0.3s ease;
+}
+
+    .channel-name {
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 12px;
+      color: #ffffff;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    }
+
+    .description {
+      font-size: 14px;
+      margin-bottom: 33px;
+      color: #ccc;
+      margin-top: 6px;
+      text-align: center;
+    }
+    
+    .yt-section {
+  margin: 32px 0;
+  padding: 16px;
+  background-color: #1e1e2f;
+  border: 1px solid rgba(138, 43, 226, 0.4);
+  box-shadow: 0 0 20px rgba(138, 43, 226, 0.3);
+  border-radius: 12px;
+  text-align: center;
+}
+
+.channel-title {
+  color: #fff;
+  font-size: 18px;
+  text-shadow: 0 0 6px rgba(138, 43, 226, 0.5);
+}
+
+    .app-list {
+      padding-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .app-item {
+  display: flex;
+  align-items: center;
+  background-color: #1e1e2f;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(138, 43, 226, 0.6); /* garis ungu jelas */
+  box-shadow: 0 0 25px 6px rgba(138, 43, 226, 0.5); /* glow terang */
+  transition: all 0.3s ease;
+}
+
+    .app-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 35px 10px rgba(138, 43, 226, 0.8); /* glow makin terang */
+  background-color: #2b2040;
+  border-color: rgba(185, 92, 255, 0.9);
+}
+
+    .app-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      object-fit: cover;
+      margin-right: 14px;
+      border: 1px solid #555;
+    }
+
+    .app-name {
+      font-size: 16px;
+      font-weight: 500;
+      color: #fff;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+    }
+    
+    .section-title {
+  text-align: center;
+  margin: 40px 0 20px;
+  font-size: 16px;
+  color: #aaa;
+  position: relative;
+}
+
+.section-title span {
+  padding: 0 12px;
+  background: #111;
+  z-index: 1;
+  position: relative;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px rgba(138, 43, 226, 0.6);
+}
+
+.section-title::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 1px;
+  width: 100%;
+  background: rgba(138, 43, 226, 0.4);
+  z-index: 0;
+}
+
+    footer {
+  width: 100%;
+  text-align: center;
+  padding: 16px 0;
+  font-size: 13px;
+  color: #ccc;
+  background-color: #111;
+  border-top: 1px solid rgba(138, 43, 226, 0.3); /* garis ungu */
+  box-shadow: 0 -2px 20px rgba(138, 43, 226, 0.4); /* shadow ungu ke atas */
+  position: relative;
+  z-index: 1;
+}
+
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 999;
+    }
+
+    .loading-overlay img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 12px;
+      border: 2px solid #888;
+    }
+
+    .loading-text {
+      font-size: 18px;
+      font-weight: 600;
+      color: #eee;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    }
+  </style>
+</head>
+<body>
+
+<div class="menu-wrapper">
+  <div class="menu-dot" onclick="toggleMenu()">⋮</div>
+  <div class="menu-dropdown" id="menu">
+  <a href="https://wa.me/6283163985132?text=List" target="_blank">Buy App Premium</a>
+    <a href="https://wa.me/62895351076737" target="_blank">Owner</a>
+    <a href="https://saweria.co/FarinYt" target="_blank">Donasi</a>
+  </div>
+</div>
+
+  <div class="wrapper">
+    <div class="container">
+      <div class="profile">
+        <img src="https://yt3.ggpht.com/X1XShQhSruB2_-LfTQqKTWfrEf9VsDgmhwmWRq7rAxcXiSGNWW3oJmkiXij9YdHU-JVWT_bqLQ=s176-c-k-c0x00ffffff-no-rj" alt="Yayol">
+        <div class="channel-name">𝐘𝐀𝐘𝐎𝐋 𝐎𝐅𝐅𝐈𝐂𝐈𝐀𝐋</div>
+        <div class="description">ALL MOD APK ADA DISINI</br>DI SCROLL KEBAWAH</div>
+      </div>
+
+      <div class="yt-section">
+  <div class="yt-video">
+    <iframe width="100%"
+    height="200"
+    src="https://www.youtube.com/embed/Nz63JLoDL4E" 
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+<!-- Judul Aplikasi -->
+<div class="section-title"><span>Aplikasi</span></div>
+
+<div class="app-list">
+  <!-- daftar aplikasi kamu tetap di sini -->
+  <a href="https://subs4unlock.id/ArHkTI" class="app-item" onclick="showLoading(event)">
+          <img src="https://cdn.prod.website-files.com/64ea57571d50b02423c4505d/64fb219ade937671b42e011e_capcut%20logo%20png.png" alt="Capcut" class="app-icon">
+          <div class="app-name">Capcut</div>
+        </a>
+
+        <a href="https://subs4unlock.id/LRTuzA" class="app-item" onclick="showLoading(event)">
+          <img src="https://img.utdstc.com/icon/8ba/d1b/8bad1b71d4c0265be8117ac3c0aba558ee4ab327bcee0f6ad11b935eef67b1a7:200" alt="Wink" class="app-icon">
+          <div class="app-name">Wink</div>
+        </a>
+
+        <a href="https://subs4unlock.id/fE9Tta" class="app-item" onclick="showLoading(event)">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQw_iMzcQrOTDykEya50Yb8cOAvVpPJTH_XedIiZCoeKbPjTWxMAXZdlCKY&s=10" alt="loklok" class="app-icon">
+          <div class="app-name">Loklok</div>
+        </a>
+        
+        <a href="https://subs4unlock.id/rnWXT5" class="app-item" onclick="showLoading(event)">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSi0uAIv3Sm3cPP4mNBxW10LCxAY9FISq7asvPgJRDhaw&s" alt="Spotify" class="app-icon">
+          <div class="app-name">Spotify</div>
+        </a>
+      </div>
+</div>
+
+<div class="container">
+<!-- Judul Game -->
+<div class="section-title"><span>Game</span></div>
+
+<div class="app-list">
+  <!-- contoh game -->
+  <a href="https://sfl.gl/4GtLj" class="app-item" onclick="showLoading(event)">
+    <img src="https://www.lapakgaming.com/static/category/clashofclans.jpg?tr=w-128%2Cq-75" alt="Game1" class="app-icon">
+    <div class="app-name">Clash Of Clans</div>
+  </a>
+
+  <a href="https://wa.me/62895351076737" class="app-item" onclick="showLoading(event)">
+    <img src="https://via.placeholder.com/44?text=G2" alt="!" class="app-icon">
+    <div class="app-name">Coming soon</div>
+  </a>
+</div>
+</div>
+</div>
+
+    <footer>© 2025 Yayol Official All Rights Reserved</footer>
+  </div>
+
+  <!-- Loading Screen -->
+  <div class="loading-overlay" id="loadingScreen">
+    <img src="https://yt3.ggpht.com/X1XShQhSruB2_-LfTQqKTWfrEf9VsDgmhwmWRq7rAxcXiSGNWW3oJmkiXij9YdHU-JVWT_bqLQ=s176-c-k-c0x00ffffff-no-rj" alt="Loading">
+    <div class="loading-text">𝐘𝐀𝐘𝐎𝐋 𝐎𝐅𝐅𝐈𝐂𝐈𝐀𝐋</div>
+  </div>
+
+  <script>
+  function toggleMenu() {
+    const menu = document.getElementById("menu");
+    menu.style.display = (menu.style.display === "block") ? "none" : "block";
+  }
+
+  // Tutup menu kalau klik di luar
+  document.addEventListener("click", function(e) {
+    const menu = document.getElementById("menu");
+    const dot = document.querySelector(".menu-dot");
+    if (!menu.contains(e.target) && !dot.contains(e.target)) {
+      menu.style.display = "none";
+    }
+  });
+
+    function showLoading(e) {
+      e.preventDefault();
+      const loading = document.getElementById("loadingScreen");
+      loading.style.display = "flex";
+      const targetURL = e.currentTarget.href;
+      setTimeout(() => {
+        window.location.href = targetURL;
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
